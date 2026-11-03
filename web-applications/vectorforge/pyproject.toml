@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vectorforge"
+version = "1.0.0"
+description = "Self-hosted raster-to-vector converter: PNG/JPG/GIF/BMP/WebP/TIFF to SVG, PDF, EPS, DXF and PNG."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "fastapi>=0.110", "uvicorn[standard]>=0.29", "python-multipart>=0.0.9",
+  "numpy>=1.26", "opencv-python-headless>=4.9", "scipy>=1.11",
+  "scikit-image>=0.22", "pillow>=10.2", "ezdxf>=1.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "httpx>=0.27"]
+
+[project.scripts]
+vectorforge = "vectorforge.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["vectorforge*"]
+
+[tool.setuptools.package-data]
+vectorforge = ["web/*"]

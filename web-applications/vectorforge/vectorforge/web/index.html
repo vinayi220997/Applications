@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Vectorforge</title>
+<meta name="description" content="Convert PNG, JPG, GIF, BMP and WebP images to clean SVG, PDF, EPS and DXF vectors on your own server.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231e2833'/%3E%3Cpath d='M7 23 16 7l9 16z' fill='none' stroke='%23d41f6b' stroke-width='2.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="/" aria-label="Vectorforge home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25 16 6l11 19z"/><circle cx="16" cy="6" r="2.4"/><circle cx="5" cy="25" r="2.4"/><circle cx="27" cy="25" r="2.4"/></svg>
+    <span>Vectorforge</span>
+  </a>
+  <nav class="bar-actions">
+    <button class="ghost" id="newBtn" hidden>New image</button>
+    <a class="ghost" href="/docs" target="_blank" rel="noopener">API</a>
+  </nav>
+</header>
+
+<main class="workspace" id="workspace" data-state="empty">
+  <section class="mat" id="mat" aria-label="Canvas">
+    <div class="ruler ruler-x" aria-hidden="true"></div>
+    <div class="ruler ruler-y" aria-hidden="true"></div>
+
+    <!-- empty state: the drop target -->
+    <div class="drop" id="drop">
+      <div class="drop-card">
+        <svg class="drop-glyph" viewBox="0 0 120 90" aria-hidden="true">
+          <g class="px"><rect x="8" y="22" width="10" height="10"/><rect x="18" y="12" width="10" height="10"/><rect x="18" y="22" width="10" height="10"/><rect x="28" y="12" width="10" height="10"/><rect x="28" y="22" width="10" height="10"/><rect x="28" y="32" width="10" height="10"/><rect x="18" y="32" width="10" height="10"/><rect x="8" y="32" width="10" height="10"/><rect x="18" y="42" width="10" height="10"/><rect x="28" y="42" width="10" height="10"/></g>
+          <path class="cut" d="M72 47c0-17 11-31 24-31s20 12 20 23-9 28-22 28-22-6-22-20z"/>
+          <path class="arrow" d="M46 37h16m-5-5 5 5-5 5"/>
+        </svg>
+        <h1>Drop an image to vectorize</h1>
+        <p class="hint">PNG, JPG, GIF, BMP, WebP or TIFF, up to 30 MB. You can also paste with <kbd>Ctrl</kbd>&nbsp;<kbd>V</kbd>.</p>
+        <div class="drop-actions">
+          <label class="btn primary" for="fileInput">Choose image</label>
+          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/gif,image/bmp,image/webp,image/tiff" hidden>
+          <form id="urlForm" class="url-form">
+            <input id="urlInput" type="url" placeholder="or paste an image URL" aria-label="Image URL">
+            <button class="btn" type="submit">Fetch</button>
+          </form>
+        </div>
+        <p class="fine">Images are processed on this server and deleted after 24 hours.</p>
+      </div>
+    </div>
+
+    <!-- viewer -->
+    <div class="viewer" id="viewer" hidden>
+      <div class="stage" id="stage">
+        <img id="srcImg" alt="Original image" draggable="false">
+        <div id="vecLayer" class="vec-layer" aria-label="Vector result"></div>
+      </div>
+      <div class="split" id="split" hidden><button class="split-handle" id="splitHandle" aria-label="Drag to compare"></button></div>
+      <div class="busy" id="busy" hidden>
+        <div class="busy-box">
+          <div class="busy-label" id="busyLabel">Uploading</div>
+          <div class="meter"><span id="meterFill"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-tools" id="viewTools" hidden>
+      <div class="seg" role="tablist" aria-label="View">
+        <button role="tab" data-view="compare" aria-selected="true">Compare</button>
+        <button role="tab" data-view="vector" aria-selected="false">Vector</button>
+        <button role="tab" data-view="outlines" aria-selected="false">Outlines</button>
+        <button role="tab" data-view="original" aria-selected="false">Original</button>
+      </div>
+      <div class="zoom">
+        <button id="zoomOut" aria-label="Zoom out">−</button>
+        <button id="zoomFit" class="zoom-val" aria-label="Fit to view"><span id="zoomVal">100%</span></button>
+        <button id="zoomIn" aria-label="Zoom in">+</button>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  </section>
+
+  <aside class="panel" id="panel" hidden>
+    <div class="panel-scroll">
+      <div class="file-line">
+        <strong id="fileName">image.png</strong>
+        <span id="fileMeta"></span>
+      </div>
+      <div class="history">
+        <button id="undoBtn" disabled>Undo</button>
+        <button id="redoBtn" disabled>Redo</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+
+      <section class="group">
+        <h2>Colors</h2>
+        <div class="row">
+          <label for="colorCount">Number of colors</label>
+          <output id="colorCountOut">Auto</output>
+        </div>
+        <input type="range" id="colorCount" min="0" max="48" step="1" value="0" aria-describedby="colorCountHelp">
+        <p class="help" id="colorCountHelp">Slide to 0 to let Vectorforge decide.</p>
+        <ul class="swatches" id="swatches" aria-label="Palette"></ul>
+        <p class="help">Click a color to change it. Use the eye to make it transparent.</p>
+      </section>
+
+      <section class="group">
+        <h2>Image</h2>
+        <div class="field">
+          <span class="field-label">Treat as</span>
+          <div class="seg small" data-opt="processing.image_type">
+            <button data-val="auto">Auto</button><button data-val="art">Artwork</button><button data-val="photo">Photo</button>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label">Detail</span>
+          <div class="seg small" data-opt="processing.detail">
+            <button data-val="low">Low</button><button data-val="medium">Medium</button><button data-val="high">High</button>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-opt="processing.background.remove"> Remove background</label>
+      </section>
+
+      <section class="group">
+        <h2>Geometry</h2>
+        <label class="check"><input type="checkbox" data-opt="processing.parameterized_shapes.enabled"> Fit whole shapes (circles, ellipses, rectangles, stars)</label>
+        <div class="row"><label for="corner">Corner sharpness</label><output id="cornerOut"></output></div>
+        <input type="range" id="corner" data-opt="processing.corner_threshold" min="20" max="120" step="5">
+        <p class="help">Lower values keep more sharp corners.</p>
+        <div class="row"><label for="tol">Curve smoothness</label><output id="tolOut"></output></div>
+        <input type="range" id="tol" data-opt="processing.fit_tolerance" min="0" max="2" step="0.05">
+        <p class="help">0 uses the detail level's setting. Higher values give fewer anchor points.</p>
+        <div class="field">
+          <span class="field-label">Shapes</span>
+          <div class="seg small" data-opt="output.shape_stacking">
+            <button data-val="cutouts">Cut out</button><button data-val="stacked">Stacked</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2>Download</h2>
+        <div class="formats" role="radiogroup" aria-label="File format" id="formats">
+          <button role="radio" data-fmt="svg" aria-checked="true">SVG</button>
+          <button role="radio" data-fmt="pdf" aria-checked="false">PDF</button>
+          <button role="radio" data-fmt="eps" aria-checked="false">EPS</button>
+          <button role="radio" data-fmt="dxf" aria-checked="false">DXF</button>
+          <button role="radio" data-fmt="png" aria-checked="false">PNG</button>
+        </div>
+        <div class="field">
+          <span class="field-label">Draw</span>
+          <div class="seg small" data-out="output.draw_style">
+            <button data-val="fill_shapes">Filled</button><button data-val="stroke_shapes">Outlines</button>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-out="output.group_by" data-on="color" data-off="none"> Group shapes by color</label>
+        <label class="check"><input type="checkbox" data-out="output.gap_filler.enabled"> Fill hairline gaps between shapes</label>
+        <div class="field" id="dxfField" hidden>
+          <span class="field-label">DXF curves</span>
+          <select data-out="output.dxf.compatibility_level">
+            <option value="lines_only">Lines only</option>
+            <option value="lines_and_arcs">Lines and arcs</option>
+            <option value="lines_arcs_and_splines">Lines, arcs and splines</option>
+          </select>
+        </div>
+        <div class="size">
+          <label>Width<input type="number" min="0" step="any" data-out="output.size.width" placeholder="auto"></label>
+          <label>Unit<select data-out="output.size.unit">
+            <option value="none">px</option><option value="mm">mm</option><option value="cm">cm</option><option value="in">in</option><option value="pt">pt</option>
+          </select></label>
+        </div>
+        <a class="btn primary wide" id="downloadBtn" href="#" download>Download SVG</a>
+        <p class="stats" id="stats"></p>
+      </section>
+    </div>
+  </aside>
+</main>
+<script type="module" src="/static/app.js"></script>
+</body>
+</html>

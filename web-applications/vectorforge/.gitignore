@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.env
+data/
+tests/results/*.render.png
+.pytest_cache/
+.build-venv/
+build/
+dist/

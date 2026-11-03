@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 400 300">
+<g id="gap-filler" fill="none" stroke-width="1.5" stroke-linejoin="round">
+<path stroke="#ffffff" vector-effect="non-scaling-stroke" d="M0 0L400 0L400 300L0 300L0 0ZM201.09 150.5A80.59 80.59 0 0 1 39.91 150.5A80.59 80.59 0 0 1 201.09 150.5ZM220 70L361 70L361 211L220 211L220 70Z"/>
+<path stroke="#e63946" vector-effect="non-scaling-stroke" d="M201.09 150.5A80.59 80.59 0 0 1 39.91 150.5A80.59 80.59 0 0 1 201.09 150.5Z"/>
+<path stroke="#1d3557" vector-effect="non-scaling-stroke" d="M220 70L361 70L361 211L220 211L220 70ZM351.62 201L290.5 88.97L229.38 201L351.62 201Z"/>
+<path stroke="#f1c40f" vector-effect="non-scaling-stroke" d="M351.62 201L229.38 201L290.5 88.97L351.62 201Z"/>
+</g>
+<path fill="#ffffff" fill-rule="evenodd" d="M0 0L400 0L400 300L0 300L0 0ZM201.09 150.5A80.59 80.59 0 0 1 39.91 150.5A80.59 80.59 0 0 1 201.09 150.5ZM220 70L361 70L361 211L220 211L220 70Z"/>
+<circle cx="120.5" cy="150.5" r="80.59" fill="#e63946"/>
+<path fill="#1d3557" fill-rule="evenodd" d="M220 70L361 70L361 211L220 211L220 70ZM351.62 201L290.5 88.97L229.38 201L351.62 201Z"/>
+<polygon points="351.62,201 229.38,201 290.5,88.97" fill="#f1c40f"/>
+</svg>
