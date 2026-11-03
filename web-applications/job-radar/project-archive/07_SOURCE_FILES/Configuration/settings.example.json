@@ -1,0 +1,72 @@
+{
+  "timezone": "Asia/Kolkata",
+  "freshness_window_days": 7,
+  "high_match_threshold": 75,
+  "min_score_to_report": 55,
+  "max_jobs_per_report": 40,
+  "verify_top_n": 30,
+  "request_timeout_seconds": 20,
+  "max_parallel_requests": 8,
+  "weights": {
+    "skills": 0.3,
+    "experience": 0.25,
+    "responsibilities": 0.2,
+    "location": 0.1,
+    "preferences": 0.1,
+    "compensation": 0.05
+  },
+  "email": {
+    "enabled": true,
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "",
+    "app_password": "",
+    "from_name": "Job Radar"
+  },
+  "sources": {
+    "greenhouse": true,
+    "lever": true,
+    "ashby": true,
+    "smartrecruiters": true,
+    "workable": true,
+    "recruitee": true,
+    "remotive": true,
+    "remoteok": true,
+    "jobicy": true,
+    "weworkremotely": true,
+    "arbeitnow": false,
+    "adzuna": {
+      "enabled": false,
+      "app_id": "",
+      "app_key": "",
+      "country": "in"
+    }
+  },
+  "anthropic": {
+    "api_key": "",
+    "model": "claude-haiku-4-5"
+  },
+  "ai": {
+    "enabled": true,
+    "provider": "anthropic"
+  },
+  "ocr": {
+    "enabled": true,
+    "provider": "auto"
+  },
+  "mail": {
+    "to": [],
+    "cc": [],
+    "bcc": [],
+    "default_account": null,
+    "sender": {
+      "mode": "default",
+      "accounts": [],
+      "strategy": "copy"
+    },
+    "fallback": "stop",
+    "daily_limit": 450,
+    "from_name": "Job Radar"
+  },
+  "ui_port": 8765
+}

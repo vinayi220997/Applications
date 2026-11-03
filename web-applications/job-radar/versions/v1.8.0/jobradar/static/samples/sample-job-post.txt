@@ -1,0 +1,25 @@
+Senior Data Analyst – Payments Insights
+Company: Northwind Pay (fictional example)
+Location: Hyderabad, India (Hybrid – 3 days in office)
+Experience: 3-5 years
+Salary: 18-24 LPA
+
+About the role
+You will turn payment data into decisions for our product and risk teams.
+
+What you'll do
+- Build and maintain dashboards in Tableau and Power BI
+- Write complex SQL on Snowflake and BigQuery
+- Run A/B testing analysis and explain results to product managers
+- Automate weekly reports with Python (pandas)
+
+Requirements
+- 3-5 years in data analytics, ideally fintech
+- Strong SQL, Python and statistics
+- Clear written communication
+
+Nice to have
+- dbt and Airflow
+- Experience with fraud or risk data
+
+Apply now: https://careers.example.com/northwind-pay/senior-data-analyst

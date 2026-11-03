@@ -1,0 +1,3 @@
+# Folder status
+
+Not applicable.

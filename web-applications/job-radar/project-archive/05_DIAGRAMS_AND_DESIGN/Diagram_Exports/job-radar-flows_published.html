@@ -1,0 +1,511 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Job Radar Flows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: reference manual — sticky contents rail on the left, one section per flow on the right, each with a diagram then the rules in plain words. */
+:root {
+  --bg: #f4f5f8; --surface: #ffffff; --sunk: #eceef4; --line: #d9dce6; --fg: #171a24; --muted: #5b6173;
+  --accent: #2a4fd6; --ok: #137a4b; --ok-bg: #e2f4ea; --warn: #8a6100; --warn-bg: #fbf1d2; --bad: #b42318; --bad-bg: #fde7e4; --info-bg: #e6ebfb;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", Consolas, ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1117; --surface: #171a23; --sunk: #1e2230; --line: #2b3042; --fg: #e8eaf1; --muted: #9aa1b5;
+  --accent: #7d97ff; --ok: #5fd39a; --ok-bg: #143224; --warn: #e8c45a; --warn-bg: #352c10; --bad: #ff8a7f; --bad-bg: #3c1815; --info-bg: #1d2747; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1117; --surface: #171a23; --sunk: #1e2230; --line: #2b3042; --fg: #e8eaf1; --muted: #9aa1b5;
+  --accent: #7d97ff; --ok: #5fd39a; --ok-bg: #143224; --warn: #e8c45a; --warn-bg: #352c10; --bad: #ff8a7f; --bad-bg: #3c1815; --info-bg: #1d2747; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font: 15px/1.6 var(--body); padding-inline: 16px; padding-block: 24px 64px }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 32px; align-items: start }
+@media (max-width: 860px) { .wrap { grid-template-columns: minmax(0, 1fr) } nav.toc { position: static !important } }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance }
+h1 { font-size: 34px; letter-spacing: -.01em }
+h2 { font-size: 22px }
+h3 { font-size: 16px; margin-top: 6px }
+.eyebrow { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
+.lede { color: var(--muted); max-width: 70ch; margin: 8px 0 0 }
+nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); display: grid; gap: 2px; font-size: 14px }
+nav.toc a { color: var(--fg); text-decoration: none; padding: 5px 10px; border-radius: 7px; display: flex; gap: 8px }
+nav.toc a:hover, nav.toc a:focus-visible { background: var(--sunk); outline: none }
+nav.toc .n { font: 500 12px var(--mono); color: var(--muted); min-width: 18px }
+main { display: grid; gap: 22px; min-width: 0 }
+section { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: grid; gap: 14px; min-width: 0; scroll-margin-top: 16px }
+section > header { display: grid; gap: 4px }
+.diagram { overflow-x: auto; background: var(--bg); border-radius: 10px; padding: 14px; border: 1px solid var(--line) }
+.diagram pre.mermaid { margin: 0; background: none; font-family: var(--body) }
+p { margin: 0; max-width: 72ch }
+ul, ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; max-width: 76ch }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px }
+@media (max-width: 640px) { .cols { grid-template-columns: minmax(0, 1fr) } }
+.box { background: var(--sunk); border-radius: 10px; padding: 14px; display: grid; gap: 8px; min-width: 0 }
+.tablewrap { overflow-x: auto }
+table { border-collapse: collapse; width: 100%; font-size: 14px }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font: 600 12px var(--body); color: var(--muted); text-transform: uppercase; letter-spacing: .05em }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap }
+kbd, code { font: 13px var(--mono); background: var(--sunk); border-radius: 5px; padding: 1px 6px }
+.chip { font: 500 12px var(--body); padding: 2px 9px; border-radius: 999px; background: var(--sunk); white-space: nowrap }
+.chip.ok { background: var(--ok-bg); color: var(--ok) } .chip.warn { background: var(--warn-bg); color: var(--warn) }
+.chip.bad { background: var(--bad-bg); color: var(--bad) } .chip.info { background: var(--info-bg); color: var(--accent) }
+.say { border-left: 3px solid var(--accent); padding: 6px 12px; background: var(--info-bg); border-radius: 0 8px 8px 0; font-size: 14px }
+.say b { font-family: var(--mono); font-weight: 500 }
+</style>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contents">
+    <div class="eyebrow" style="padding:0 10px 8px">Contents</div>
+    <a href="#overview"><span class="n">00</span>Whole app at a glance</a>
+    <a href="#install"><span class="n">01</span>Install and start</a>
+    <a href="#chat"><span class="n">02</span>Create a search (chat)</a>
+    <a href="#scan"><span class="n">03</span>Scan</a>
+    <a href="#match"><span class="n">04</span>Matching and ranking</a>
+    <a href="#report"><span class="n">05</span>Results and email report</a>
+    <a href="#screen"><span class="n">06</span>What you can do on screen</a>
+    <a href="#schedule"><span class="n">07</span>Schedule</a>
+    <a href="#check"><span class="n">08</span>Setup check</a>
+    <a href="#settings"><span class="n">09</span>Settings</a>
+    <a href="#update"><span class="n">10</span>Updates, data, uninstall</a>
+    <a href="#glossary"><span class="n">11</span>Statuses and labels</a>
+  </nav>
+
+  <main>
+    <div style="display:grid;gap:6px">
+      <div class="eyebrow">Job Radar · local job discovery agent · v1.4</div>
+      <h1>Job Radar Flows</h1>
+      <p class="lede">Every path through the app: how a search is created, how a scan finds and checks jobs, how matches are scored, and when an email goes out. Use it to train new users or to find where something went wrong.</p>
+    </div>
+
+    <section id="overview">
+      <header><div class="eyebrow">00</div><h2>Whole app at a glance</h2></header>
+      <div class="diagram"><pre class="mermaid">
+flowchart LR
+  A[Install<br/>JobRadar-Setup.exe] --> B[Open Job Radar<br/>Desktop icon]
+  B --> C[Find jobs chat<br/>text, resume, screenshot, voice]
+  C --> D[Summary card<br/>edit by typing]
+  D --> E[Saved search<br/>one per person]
+  E --> F{Start a scan}
+  F -->|Scan now| G[Scan]
+  F -->|Schedule| G
+  G --> H[Results on screen]
+  G --> I[Email report<br/>if email is set up]
+  H --> J[Save / Applied / Dismiss]
+  H --> K[Email results now]
+  B --> L[Settings<br/>Gmail, Adzuna, companies]
+  B --> M[Check setup]
+      </pre></div>
+      <p>Everything runs on your computer. Job sites are read through their public feeds; nothing is applied for on your behalf, and your resume never leaves the PC unless you add an Anthropic key for reading images.</p>
+    </section>
+
+    <section id="install">
+      <header><div class="eyebrow">01</div><h2>Install and start</h2></header>
+      <div class="diagram"><pre class="mermaid">
+flowchart TD
+  S[Double-click JobRadar-Setup.exe] --> W{Windows protected your PC?}
+  W -->|More info, Run anyway| P{Python 3.9+ installed?}
+  W -->|No warning| P
+  P -->|Yes| F[Copy app to AppData\Local\Programs\JobRadar]
+  P -->|No| D[Download Python 3.12 from python.org<br/>install for this user]
+  D --> F
+  F --> SC[Desktop and Start menu shortcuts<br/>Apps and features entry]
+  SC --> R[Finish: Start Job Radar now]
+  R --> BW[Black window opens<br/>browser opens 127.0.0.1:8765]
+  BW --> U{Already running?}
+  U -->|Yes| O[Just opens the browser]
+  U -->|No| OK[App ready]
+      </pre></div>
+      <ul>
+        <li>Keep the black window open while you use the app. Closing it stops the app, but scheduled scans still run on their own.</li>
+        <li>Setup installs for your Windows user only, so no admin password is needed.</li>
+        <li>Installing a newer version over the old one keeps your searches, settings, results and attachments.</li>
+      </ul>
+    </section>
+
+    <section id="chat">
+      <header><div class="eyebrow">02</div><h2>Create a search (chat)</h2>
+        <p class="lede">The chat builds a search profile. It reads what you type or attach, fills in what it can, and asks only for what's missing.</p></header>
+      <div class="diagram"><pre class="mermaid">
+flowchart TD
+  IN[Your first message] --> T[Text description]
+  IN --> AT[Attach: PDF, Word, text]
+  IN --> SS[Screenshot of a job post]
+  IN --> VO[Voice: speech typed into the box]
+  AT --> RD[Read the file]
+  SS --> IMG{Anthropic key set?}
+  IMG -->|Yes| RD
+  IMG -->|No| NOTE[Image saved; asks you to type key details]
+  VO --> RD
+  T --> UND[Understand: titles, skills, years, cities,<br/>remote/hybrid, salary, industries]
+  RD --> UND
+  UND --> Q[Ask the next missing question]
+  Q --> ANS[Your answer]
+  ANS --> SIDE{Does it mention<br/>something else too?}
+  SIDE -->|City, years, salary,<br/>arrangement, email| SAVE[Save that field too<br/>reply: Got it, ...]
+  SIDE -->|No| FILL[Fill the asked field]
+  SAVE --> AGAIN{Was the asked<br/>question answered?}
+  AGAIN -->|No| Q
+  AGAIN -->|Yes| NEXT
+  FILL --> NEXT{More missing?}
+  NEXT -->|Yes| Q
+  NEXT -->|No| CARD[Summary card]
+  CARD --> EDIT[Type a change:<br/>add Pune, remove seo skill, make it hybrid]
+  EDIT --> CARD
+  CARD --> SV[Save / Save and scan now]
+      </pre></div>
+      <div class="cols">
+        <div class="box">
+          <h3>Question order</h3>
+          <ol>
+            <li>Job titles (confirm the ones found)</li>
+            <li>Years of experience</li>
+            <li>Locations</li>
+            <li>Remote jobs at international companies?</li>
+            <li>Work arrangement: Remote, Hybrid, Onsite, Any</li>
+            <li>Must-have skills (confirm)</li>
+            <li>Minimum salary (optional)</li>
+            <li>Anything to avoid (optional)</li>
+            <li>Email for the daily report (optional)</li>
+            <li>Name for the search</li>
+          </ol>
+          <p class="lede" style="margin:0">Questions already answered by your description are skipped. A resume never decides the work arrangement or salary; those are always asked.</p>
+        </div>
+        <div class="box">
+          <h3>How it reads your answers</h3>
+          <ul>
+            <li><b>add</b>, <b>also</b>, <b>include</b> add to a list; <b>remove</b>, <b>drop</b> take away; anything else replaces.</li>
+            <li>City names are spotted anywhere, including misspellings and short forms: bengular, banglore, hyd, vizag, chenai, bombay, gurgoan.</li>
+            <li>A plain number for salary means lakhs per year: <code>7</code> becomes <code>7 LPA</code>.</li>
+            <li>Text that doesn't look like a job title is never saved as one; the chat says so.</li>
+            <li>"add city Kakinada" adds a city it doesn't know.</li>
+            <li>"also add location" with no city makes it ask which cities.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="say"><b>You:</b> add bengular &nbsp;→&nbsp; <b>Job Radar:</b> Got it. I read 'bengular' as Bengaluru. Locations now: Visakhapatnam, Bengaluru.</div>
+    </section>
+
+    <section id="scan">
+      <header><div class="eyebrow">03</div><h2>Scan</h2>
+        <p class="lede">One scan runs every active search. While it runs, a radar animation shows, the log fills in, and the Scan button becomes a red Stop scan button.</p></header>
+      <div class="diagram"><pre class="mermaid">
+flowchart TD
+  ST[Scan now or scheduled time] --> LK{Another scan running?}
+  LK -->|Yes| BUSY[Shows: already running]
+  LK -->|No| NET{Job sites reachable?}
+  NET -->|No| FAIL[Status Failed:<br/>no internet or blocked]
+  NET -->|Yes| EB[Read employer job boards<br/>Greenhouse, Lever, Ashby,<br/>SmartRecruiters, Workable, Recruitee]
+  EB --> JB[Read job boards<br/>Remotive, Remote OK, Jobicy,<br/>We Work Remotely, Adzuna if on]
+  JB --> STO[Store jobs<br/>new, changed, reposted]
+  STO --> CL[Jobs gone from an employer board<br/>are marked Closed]
+  CL --> DD[Remove duplicates across sources<br/>prefer the employer's own link]
+  DD --> PER[For each saved search]
+  PER --> MT[Match and score]
+  MT --> VF[Check top 30 links that<br/>aren't from employer boards]
+  VF --> FR[Sort by freshness and<br/>new vs already sent]
+  FR --> RP[Build report, save HTML]
+  RP --> EM{Email set up and<br/>search email on?}
+  EM -->|Yes| SEND[Send email]
+  EM -->|No| KEEP[Results in the app only]
+  SEND --> REC[Remember what was sent]
+  KEEP --> REC
+  REC --> DONE[Status Completed or<br/>Partially completed]
+  EB -. Stop scan .-> STOP[Status Scan stopped<br/>nothing emailed]
+  JB -. Stop scan .-> STOP
+  MT -. Stop scan .-> STOP
+      </pre></div>
+      <ul>
+        <li>If one source fails, the scan carries on and lists the failure under "Source failures" in the report. The status is then <span class="chip warn">Partially completed</span>.</li>
+        <li>Employer boards that don't exist are skipped and checked again after 14 days.</li>
+        <li>Stop finishes the current step, then stops. Jobs read so far are kept; nothing is emailed.</li>
+        <li>If email sending failed, those jobs are not marked as sent, so they go out in the next email that works.</li>
+      </ul>
+    </section>
+
+    <section id="match">
+      <header><div class="eyebrow">04</div><h2>Matching and ranking</h2></header>
+      <div class="diagram"><pre class="mermaid">
+flowchart LR
+  J[Job] --> T{Title related to<br/>your job titles?}
+  T -->|No| X[Skip]
+  T -->|Yes| H{Hard rules}
+  H -->|Fails| CM{Only the city<br/>or remote area?}
+  CM -->|Yes| CLOSE[Close match]
+  CM -->|No| X
+  H -->|Passes| SC[Score 0 to 100]
+  SC --> TH{Score 55 or more?}
+  TH -->|Yes| FULL[Full match]
+  TH -->|No| CLOSE
+      </pre></div>
+      <div class="cols">
+        <div class="box">
+          <h3>Hard rules (any one fails the job)</h3>
+          <ul>
+            <li>On your avoid list</li>
+            <li>Internship or trainee role, unless you want one</li>
+            <li>Principal, staff, director or head roles when your experience is under 8 years</li>
+            <li>Onsite or hybrid outside your cities</li>
+            <li>Remote but limited to another country, e.g. "Remote (USA only)"</li>
+            <li>International remote when you chose India only</li>
+            <li>Asks for more than 2 years above your experience</li>
+            <li>Stated salary below your minimum (an unstated salary never fails)</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Score weights</h3>
+          <div class="tablewrap"><table>
+            <thead><tr><th>Part</th><th>Weight</th><th>How it's measured</th></tr></thead>
+            <tbody>
+              <tr><td>Skills</td><td class="num">30%</td><td>Your must-have skills found in the job (3–4 found counts as full)</td></tr>
+              <tr><td>Experience</td><td class="num">25%</td><td>Years asked vs your years</td></tr>
+              <tr><td>Responsibilities</td><td class="num">20%</td><td>Title and description vs your job titles</td></tr>
+              <tr><td>Location</td><td class="num">10%</td><td>City or remote area fit</td></tr>
+              <tr><td>Preferences</td><td class="num">10%</td><td>Industry, work arrangement</td></tr>
+              <tr><td>Pay</td><td class="num">5%</td><td>Meets your minimum, when stated</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+      <p>A skill the job doesn't mention is listed as "Not mentioned in the job". A skill the job wants that isn't in your search is "not established in your profile". Neither is treated as a confirmed gap.</p>
+    </section>
+
+    <section id="report">
+      <header><div class="eyebrow">05</div><h2>Results and email report</h2></header>
+      <div class="diagram"><pre class="mermaid">
+flowchart TD
+  M[Full matches] --> N{Sent before?}
+  N -->|No| PUB{Posted when?}
+  N -->|Yes, unchanged| OPEN[Reported earlier and still open]
+  N -->|Yes, changed or reposted| CH[Previously reported jobs that changed]
+  PUB -->|24 hours| S1[Top opportunities, last 24 hours]
+  PUB -->|7 days| S2[Other strong matches, last 7 days]
+  PUB -->|Unknown| S3[Unknown publication date]
+  PUB -->|Older| S4[Older but still open]
+  FEW{Fewer than 5 new<br/>full matches?} -->|Yes| CL[Close matches, up to 10,<br/>each says what it misses]
+      </pre></div>
+      <div class="cols">
+        <div class="box">
+          <h3>Every job card shows</h3>
+          <ul>
+            <li>Title, company, match score</li>
+            <li>Location, work arrangement, job type</li>
+            <li>Posted date (or "unknown"), first seen, last verified</li>
+            <li>Salary and experience asked, when stated</li>
+            <li>Why it matches, what's missing or uncertain</li>
+            <li>Job description (short version)</li>
+            <li>Apply button, company careers page, source link</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Email subject</h3>
+          <ul>
+            <li><code>Job Radar: 3 new matches – Vinay</code></li>
+            <li><code>Job Radar: 1 new match + 6 close – Vinay</code></li>
+            <li><code>Job Radar: 8 close matches to review – Vinay</code></li>
+            <li><code>Job Radar: no new matches today – Vinay</code></li>
+          </ul>
+          <p>Each email also lists source failures and pre-filled searches for LinkedIn, Naukri, Indeed, Foundit, Glassdoor, Wellfound and Dice, which aren't scanned automatically.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen">
+      <header><div class="eyebrow">06</div><h2>What you can do on screen</h2></header>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Where</th><th>Action</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td>Top bar</td><td>Scan now / Stop scan</td><td>Starts a scan of every active search; while running, the same button stops it.</td></tr>
+          <tr><td>Top bar</td><td>Check setup</td><td>Runs the checks in section 08 and shows OK or FIX for each.</td></tr>
+          <tr><td>Saved search card</td><td>Click the card</td><td>Shows that search's jobs on the right.</td></tr>
+          <tr><td>Saved search card</td><td>Email results now</td><td>Sends every open match for this search straight away.</td></tr>
+          <tr><td>Saved search card</td><td>Turn daily email on / off</td><td>Daily email ON shows green, OFF shows red.</td></tr>
+          <tr><td>Saved search card</td><td>Add / Change email</td><td>Sets where this search's report goes.</td></tr>
+          <tr><td>Saved search card</td><td>Pause / Resume, Delete</td><td>Paused searches are skipped by scans. Delete asks you to press twice and removes its results and attachments.</td></tr>
+          <tr><td>Results tabs</td><td>New today, This week, All open, Saved, Applied, Dismissed/closed</td><td>Filters the job list. Counts show on each tab.</td></tr>
+          <tr><td>Job card</td><td>Save, Applied, Dismiss</td><td>Applied and dismissed jobs are never reported again.</td></tr>
+          <tr><td>Results header</td><td>Open full report</td><td>Opens the last HTML report for this search.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="schedule">
+      <header><div class="eyebrow">07</div><h2>Schedule</h2></header>
+      <div class="diagram"><pre class="mermaid">
+flowchart LR
+  S[Schedule card:<br/>time, days, repeat] --> SV[Save schedule]
+  SV --> WT[Windows Task Scheduler<br/>task JobRadar\DailyScan]
+  WT --> T{At the set time}
+  T -->|PC on| RUN[Scan runs, app window not needed]
+  T -->|PC off or asleep| LATER[Runs as soon as the PC is back on]
+  OFF[Turn off] --> DEL[Task removed]
+      </pre></div>
+      <p>Repeat options: once a day, or every 2, 4, 6 or 12 hours from the start time. A scheduled scan shows the same animation in the app if the app is open, and Stop scan works on it too.</p>
+    </section>
+
+    <section id="check">
+      <header><div class="eyebrow">08</div><h2>Setup check</h2></header>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Check</th><th>OK when</th><th>If it says FIX</th></tr></thead>
+        <tbody>
+          <tr><td>Job sites reachable</td><td>The PC can reach the job-board APIs</td><td>Check internet; an office firewall may block job sites.</td></tr>
+          <tr><td>Email sending</td><td>Gmail accepts the address and app password</td><td>Use a 16-letter app password from myaccount.google.com/apppasswords, not your normal password.</td></tr>
+          <tr><td>Saved searches</td><td>At least one active search has an email with daily email on</td><td>Press Turn daily email on, or Add email.</td></tr>
+          <tr><td>Last scan</td><td>Completed or partially completed</td><td>Press Scan now and read the log.</td></tr>
+          <tr><td>Matches</td><td>Open matches exist</td><td>Widen the search: more cities, Any arrangement, similar titles, lower salary.</td></tr>
+          <tr><td>India coverage</td><td>Adzuna is on</td><td>Get a free key at developer.adzuna.com and tick Use Adzuna.</td></tr>
+          <tr><td>Schedule</td><td>A schedule is saved</td><td>Set a time and press Save schedule.</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section id="settings">
+      <header><div class="eyebrow">09</div><h2>Settings</h2></header>
+      <div class="diagram"><pre class="mermaid">
+flowchart LR
+  G[Gmail address +<br/>16-letter app password] --> T[Send test email<br/>saves first, then sends]
+  T -->|OK| OK[Test email sent to ...]
+  T -->|Wrong password| P[Gmail rejected the sign-in]
+  T -->|Blocked network| N[Tries port 587, then 465]
+  AD[Adzuna ID + key] --> MORE[Indian job-board listings]
+  AN[Anthropic key] --> IMG[Reads text in images<br/>and screenshots]
+  CO[Add a company careers link] --> REG[Checked on the next scan]
+      </pre></div>
+      <p>Supported company links: Greenhouse, Lever, Ashby, SmartRecruiters, Workable and Recruitee job-board pages. The app refuses to save email settings with an empty address or a password that isn't 16 letters.</p>
+    </section>
+
+    <section id="update">
+      <header><div class="eyebrow">10</div><h2>Updates, data, uninstall</h2></header>
+      <div class="cols">
+        <div class="box">
+          <h3>Updates</h3>
+          <p>When new program files arrive, a yellow bar says "Job Radar was updated". <b>Restart now</b> starts the new version and reloads the page. Searches and settings are kept.</p>
+        </div>
+        <div class="box">
+          <h3>Where data lives</h3>
+          <ul>
+            <li><code>data\jobradar.db</code>: searches, jobs, history, what was sent</li>
+            <li><code>data\attachments</code>: resumes, screenshots, voice notes</li>
+            <li><code>reports\</code>: one HTML report per search per scan</li>
+            <li><code>config\settings.json</code>: email and keys, on this PC only</li>
+          </ul>
+        </div>
+      </div>
+      <p>Uninstall from Start menu → Job Radar → Uninstall, or Windows Apps and features. It removes the scheduled task and shortcuts and asks whether to delete your searches and reports too.</p>
+    </section>
+
+    <section id="glossary">
+      <header><div class="eyebrow">11</div><h2>Statuses and labels</h2></header>
+      <div class="cols">
+        <div class="box">
+          <h3>Job status</h3>
+          <ul>
+            <li><span class="chip ok">Verified active</span> listed in the employer's live job feed</li>
+            <li><span class="chip info">Appears active</span> application page loads and shows the job</li>
+            <li><span class="chip warn">Unable to verify</span> blocked, redirected or not checked</li>
+            <li><span class="chip bad">Closed / expired</span> gone from the feed or page says closed</li>
+          </ul>
+          <h3>Freshness</h3>
+          <ul>
+            <li>Posted &lt; 24 h, &lt; 3 days, &lt; 7 days, older but still open</li>
+            <li>Post date unknown: the source gives no date; "first seen" is when Job Radar found it, never shown as the post date</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h3>Scan status</h3>
+          <ul>
+            <li><span class="chip info">Scanning</span> running now</li>
+            <li><span class="chip ok">Completed</span> every source answered</li>
+            <li><span class="chip warn">Partially completed</span> some sources failed; listed in the report</li>
+            <li><span class="chip warn">Scan stopped</span> you pressed Stop; nothing emailed</li>
+            <li><span class="chip bad">Failed</span> no internet, or the scan crashed</li>
+          </ul>
+          <h3>Change labels</h3>
+          <ul>
+            <li>Updated since last report: the job text changed</li>
+            <li>Reposted / reopened: closed before, or its post date changed</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!--claude-mermaid-runtime-begin:3477-->
+<style>.mermaid-diagram{margin-block:4px}.mermaid-diagram svg{display:block;margin:0 auto;max-width:100%;height:auto}</style>
+<script src="/_runtime/mermaid-11.16.1.min.js"></script>
+<script>(function(){
+var CFG={"palettes":{"light":{"surface":"#f4efe4","text":"#42392e","line":"#8a7f6d","border":"#7a6c52","bg":"#fffdf8"},"dark":{"surface":"#262b34","text":"#f2f3f5","line":"#a8adb8","border":"#9aa4b8","bg":"#1f232b"}}};
+if(typeof mermaid==='undefined')return;
+var pres=Array.prototype.slice.call(document.querySelectorAll('pre.mermaid')).filter(function(p){if(p.hasAttribute('data-claude-mermaid-claimed'))return false;p.setAttribute('data-claude-mermaid-claimed','1');return true;});
+if(!pres.length)return;
+var mq=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+var root=document.documentElement;
+var items=pres.map(function(pre){
+var mount=document.createElement('div');mount.className='mermaid-diagram';
+return {pre:pre,mount:mount,src:pre.textContent||''};
+});
+var seq=0;
+var renderGen=0;
+var lastKey='';
+function pageBg(fallback){
+var els=[document.body,document.documentElement];
+for(var i=0;i<els.length;i++){
+var c=els[i]&&getComputedStyle(els[i]).backgroundColor;
+if(c&&c!=='transparent'&&c!=='rgba(0, 0, 0, 0)')return c;
+}
+return fallback;
+}
+function render(){
+var theme=root.getAttribute('data-theme');
+var dark=theme==='dark'||(!!(mq&&mq.matches)&&theme!=='light');
+var pal=dark?CFG.palettes.dark:CFG.palettes.light;
+var bg=pageBg(pal.bg);
+var key=(dark?'d':'l')+'|'+bg;
+if(key===lastKey)return;
+lastKey=key;
+var gen=++renderGen;
+var font=getComputedStyle(document.body).fontFamily||'sans-serif';
+var nat={useMaxWidth:false};
+mermaid.initialize({
+startOnLoad:false,securityLevel:'strict',theme:'base',
+flowchart:nat,sequence:nat,er:nat,state:nat,class:nat,pie:nat,
+gantt:nat,journey:nat,timeline:nat,gitGraph:nat,mindmap:nat,xyChart:nat,
+quadrantChart:nat,sankey:nat,c4:nat,requirement:nat,block:nat,
+packet:nat,kanban:nat,architecture:nat,radar:nat,
+themeVariables:{background:bg,mainBkg:pal.surface,primaryColor:pal.surface,
+primaryTextColor:pal.text,lineColor:pal.line,primaryBorderColor:pal.border,
+nodeBorder:pal.border,clusterBorder:pal.border,edgeLabelBackground:bg,
+clusterBkg:'rgba(127,127,127,0.07)',titleColor:pal.text,
+darkMode:dark,rowOdd:bg,rowEven:'rgba(127,127,127,0.07)',
+attributeBackgroundColorOdd:bg,attributeBackgroundColorEven:'rgba(127,127,127,0.07)',
+fontSize:'16px',fontFamily:font},
+themeCSS:'.node rect, .node circle, .node polygon, .node path, .cluster rect { stroke-width: 2px; }'
+});
+items.forEach(function(it){
+var id='claude-mermaid-'+seq++;
+mermaid.render(id,it.src).then(function(r){
+if(gen!==renderGen)return;
+var prev=it.pre.previousElementSibling;
+if(prev&&prev.className==='mermaid-diagram'&&prev!==it.mount)return;
+it.mount.innerHTML=r.svg;
+if(!it.mount.parentNode)it.pre.parentNode.insertBefore(it.mount,it.pre);
+it.pre.style.display='none';
+},function(){
+var scratch=document.getElementById(id);
+if(scratch)scratch.parentNode.removeChild(scratch);
+scratch=document.getElementById('d'+id);
+if(scratch)scratch.parentNode.removeChild(scratch);
+if(gen!==renderGen)return;
+if(it.mount.parentNode)it.mount.parentNode.removeChild(it.mount);
+it.pre.style.display='';
+});
+});
+}
+render();
+if(mq&&mq.addEventListener)mq.addEventListener('change',render);
+if(typeof MutationObserver!=='undefined')new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['data-theme']});
+})();</script>
+<!--claude-mermaid-runtime-end-->
+
+</body></html>

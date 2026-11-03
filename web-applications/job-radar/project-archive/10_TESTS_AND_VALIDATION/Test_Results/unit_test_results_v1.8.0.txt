@@ -1,0 +1,130 @@
+Run at 2026-10-11T09:15:29Z (sandbox, Linux, Python 3.13.16)
+test_attach_mid_conversation_answers_pending_question (tests.test_core.Attachments.test_attach_mid_conversation_answers_pending_question) ... ok
+test_docx_job_post (tests.test_core.Attachments.test_docx_job_post) ... ok
+test_image_without_key_is_saved_with_note (tests.test_core.Attachments.test_image_without_key_is_saved_with_note) ... ok
+test_intake_with_resume_skips_known_questions (tests.test_core.Attachments.test_intake_with_resume_skips_known_questions) ... ok
+test_pdf_resume (tests.test_core.Attachments.test_pdf_resume) ... ok
+test_rejects_unknown_type (tests.test_core.Attachments.test_rejects_unknown_type) ... ok
+test_text_resume (tests.test_core.Attachments.test_text_resume) ... ok
+test_voice_uses_transcript (tests.test_core.Attachments.test_voice_uses_transcript) ... ok
+test_card_list_status_and_toggle (tests.test_core.CardsSchedulesHistory.test_card_list_status_and_toggle) ... ok
+test_default_schedule_links_new_cards (tests.test_core.CardsSchedulesHistory.test_default_schedule_links_new_cards) ... ok
+test_duplicate_starts_off (tests.test_core.CardsSchedulesHistory.test_duplicate_starts_off) ... ok
+test_export_has_no_secrets_and_imports (tests.test_core.CardsSchedulesHistory.test_export_has_no_secrets_and_imports) ... ok
+test_import_validation (tests.test_core.CardsSchedulesHistory.test_import_validation) ... ok
+test_multi_modes_saved_and_matched (tests.test_core.CardsSchedulesHistory.test_multi_modes_saved_and_matched) ... /home/claude/jobradar-agent/jobradar/db.py:113: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd6176e3e20>
+  conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {decl}")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/claude/jobradar-agent/jobradar/db.py:113: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd61758aa70>
+  conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {decl}")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/claude/jobradar-agent/jobradar/db.py:113: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd61758a6b0>
+  conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {decl}")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/claude/jobradar-agent/jobradar/db.py:113: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd61758a7a0>
+  conn.execute(f"ALTER TABLE {table} ADD COLUMN {col} {decl}")
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_schedule_conflicts_and_runs (tests.test_core.CardsSchedulesHistory.test_schedule_conflicts_and_runs) ... ok
+test_schedule_timing_and_text (tests.test_core.CardsSchedulesHistory.test_schedule_timing_and_text) ... ok
+test_schedule_validation (tests.test_core.CardsSchedulesHistory.test_schedule_validation) ... ok
+test_update_keeps_history_and_no_duplicate (tests.test_core.CardsSchedulesHistory.test_update_keeps_history_and_no_duplicate) ... ok
+test_misspelt_city_while_titles_asked (tests.test_core.ChatSpellingAndValues.test_misspelt_city_while_titles_asked) ... ok
+test_non_title_is_not_added_as_title (tests.test_core.ChatSpellingAndValues.test_non_title_is_not_added_as_title) ... ok
+test_salary_number_means_lpa (tests.test_core.ChatSpellingAndValues.test_salary_number_means_lpa) ... ok
+test_short_forms (tests.test_core.ChatSpellingAndValues.test_short_forms) ... ok
+test_unknown_city_added_when_called_a_city (tests.test_core.ChatSpellingAndValues.test_unknown_city_added_when_called_a_city) ... ok
+test_add_location_while_titles_asked (tests.test_core.ChatUnderstanding.test_add_location_while_titles_asked) ... ok
+test_bad_arrangement_is_asked_again (tests.test_core.ChatUnderstanding.test_bad_arrangement_is_asked_again) ... ok
+test_edits_after_summary (tests.test_core.ChatUnderstanding.test_edits_after_summary) ... ok
+test_side_answers_do_not_overwrite_open_question (tests.test_core.ChatUnderstanding.test_side_answers_do_not_overwrite_open_question) ... ok
+test_keeps_distinct_requisitions (tests.test_core.Dedupe.test_keeps_distinct_requisitions) ... ok
+test_merges_aggregator_into_ats (tests.test_core.Dedupe.test_merges_aggregator_into_ats) ... ok
+test_unsent_jobs_go_out_once_email_works (tests.test_core.EmailDelivery.test_unsent_jobs_go_out_once_email_works) ... /usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd62302f100>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd61758a890>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd6176e3e20>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd623e87a60>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd617589b70>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd617589d50>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_run_records_execution_and_email_separately (tests.test_core.ExecutionHistory.test_run_records_execution_and_email_separately) ... ok
+test_epoch_ms (tests.test_core.Freshness.test_epoch_ms) ... ok
+test_unknown_is_never_invented (tests.test_core.Freshness.test_unknown_is_never_invented) ... ok
+test_windows (tests.test_core.Freshness.test_windows) ... ok
+test_asks_for_missing_items_then_finishes (tests.test_core.Intake.test_asks_for_missing_items_then_finishes) ... ok
+test_bad_email_is_asked_again (tests.test_core.Intake.test_bad_email_is_asked_again) ... ok
+test_skips_known_answers (tests.test_core.Intake.test_skips_known_answers) ... ok
+test_addresses (tests.test_core.MailModule.test_addresses) ... ok
+test_legacy_settings_migrate (tests.test_core.MailModule.test_legacy_settings_migrate) ... ok
+test_partial_uncertain_and_duplicates (tests.test_core.MailModule.test_partial_uncertain_and_duplicates) ... ok
+test_password_is_encrypted_and_never_listed (tests.test_core.MailModule.test_password_is_encrypted_and_never_listed) ... ok
+test_precedence (tests.test_core.MailModule.test_precedence) ... ok
+test_sender_modes_and_fallback (tests.test_core.MailModule.test_sender_modes_and_fallback) ... ok
+test_skips_are_explained (tests.test_core.MailModule.test_skips_are_explained) ... /usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd61758a7a0>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd61758b880>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd61758ba60>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/lib/python3.13/unittest/mock.py:2253: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd61758bb50>
+  def __init__(self, name, parent):
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_templates (tests.test_core.MailModule.test_templates) ... ok
+test_experience_too_high (tests.test_core.Matching.test_experience_too_high) ... ok
+test_good_match (tests.test_core.Matching.test_good_match) ... ok
+test_irrelevant_title (tests.test_core.Matching.test_irrelevant_title) ... ok
+test_location_outside_cities (tests.test_core.Matching.test_location_outside_cities) ... ok
+test_remote_global_ok_only_if_international (tests.test_core.Matching.test_remote_global_ok_only_if_international) ... ok
+test_remote_restricted (tests.test_core.Matching.test_remote_restricted) ... ok
+test_salary_floor (tests.test_core.Matching.test_salary_floor) ... ok
+test_seniority (tests.test_core.Matching.test_seniority) ... ok
+test_unmentioned_skill_is_uncertain_not_missing_from_candidate (tests.test_core.Matching.test_unmentioned_skill_is_uncertain_not_missing_from_candidate) ... ok
+test_board_detection (tests.test_core.Parsing.test_board_detection) ... ok
+test_description (tests.test_core.Parsing.test_description) ... ok
+test_experience (tests.test_core.Parsing.test_experience) ... ok
+test_location (tests.test_core.Parsing.test_location) ... ok
+test_salary (tests.test_core.Parsing.test_salary) ... ok
+test_run_twice_no_duplicate_alerts_and_closure (tests.test_core.Pipeline.test_run_twice_no_duplicate_alerts_and_closure) ... ok
+test_ai_test_without_key (tests.test_core.ReviewAndEdit.test_ai_test_without_key) ... ok
+test_all_samples_exist (tests.test_core.ReviewAndEdit.test_all_samples_exist) ... ok
+test_brief_sample_is_understood (tests.test_core.ReviewAndEdit.test_brief_sample_is_understood) ... ok
+test_changes_diff (tests.test_core.ReviewAndEdit.test_changes_diff) ... ok
+test_edit_after_done_returns_profile (tests.test_core.ReviewAndEdit.test_edit_after_done_returns_profile) ... ok
+test_key_hint_never_full_key (tests.test_core.ReviewAndEdit.test_key_hint_never_full_key) ... ok
+test_ocr_disabled_never_reads (tests.test_core.ReviewAndEdit.test_ocr_disabled_never_reads) ... ok
+test_progress_counts_and_current (tests.test_core.ReviewAndEdit.test_progress_counts_and_current) ... ok
+test_services_offline_status_is_honest (tests.test_core.ReviewAndEdit.test_services_offline_status_is_honest) ... ok
+test_set_field_modes (tests.test_core.ReviewAndEdit.test_set_field_modes) ... ok
+test_set_field_validation (tests.test_core.ReviewAndEdit.test_set_field_validation) ... ok
+test_bad_password_message (tests.test_core.SmtpBehaviour.test_bad_password_message) ... ok
+test_falls_back_to_465 (tests.test_core.SmtpBehaviour.test_falls_back_to_465) ... /usr/lib/python3.13/unittest/mock.py:687: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7fd623e87a60>
+  raise AttributeError(name)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_strips_spaces_and_sends (tests.test_core.SmtpBehaviour.test_strips_spaces_and_sends) ... ok
+test_stop_marks_run_stopped_and_sends_nothing (tests.test_core.StopScan.test_stop_marks_run_stopped_and_sends_nothing) ... ok
+test_closed_phrase (tests.test_core.Verify.test_closed_phrase) ... ok
+test_ok (tests.test_core.Verify.test_ok) ... ok
+test_redirect_to_home (tests.test_core.Verify.test_redirect_to_home) ... ok
+test_report_works_without_tz_database (tests.test_core.WindowsTimezone.test_report_works_without_tz_database) ... ok
+
+----------------------------------------------------------------------
+Ran 79 tests in 1.775s
+
+OK

@@ -1,0 +1,84 @@
+/* ---- v1.6: input modes, questionnaire, cards, schedules, dialogs ---- */
+.modeswitch { display:grid; grid-template-columns:1fr 1fr; gap:4px; background:var(--sunk); border-radius:10px; padding:4px }
+.modeswitch button { border:0; background:transparent; border-radius:7px; padding:7px 8px; display:grid; gap:1px; text-align:left; justify-content:start }
+.modeswitch button b { font-size:13px; font-weight:600 } .modeswitch button span { font-size:11px; color:var(--muted) }
+.modeswitch button[aria-selected="true"] { background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.12) }
+.modeswitch button[aria-selected="true"] b { color:var(--accent) }
+.editbar { background:var(--info-bg); border-radius:8px; padding:8px 10px; font-size:13px; display:flex; flex-wrap:wrap; gap:6px 10px; align-items:center; justify-content:space-between }
+.qform { display:grid; gap:14px }
+.qform fieldset { border:0; padding:0; margin:0; display:grid; gap:6px }
+.qform legend, .qform .lbl { font-size:13px; font-weight:600; padding:0; margin-bottom:2px }
+.qform .help { font-size:12px; color:var(--muted); font-weight:400 }
+.qform .req::after { content:" *"; color:var(--bad) }
+.chipin { display:flex; flex-wrap:wrap; gap:6px; align-items:center; border:1px solid var(--line); border-radius:8px; padding:6px; background:var(--surface) }
+.chipin:focus-within { outline:2px solid var(--accent); outline-offset:1px }
+.chipin input { border:0; flex:1; min-width:120px; padding:3px 4px; outline:none !important; background:transparent }
+.picker { display:flex; flex-wrap:wrap; gap:6px }
+.picker button { border-radius:999px; padding:4px 11px; font-size:13px }
+.picker button[aria-pressed="true"] { background:var(--accent); color:var(--accent-ink); border-color:var(--accent) }
+.fromfile { font:600 10px var(--mono); text-transform:uppercase; letter-spacing:.05em; color:var(--ok); background:var(--ok-bg); border-radius:999px; padding:1px 7px; margin-left:6px; vertical-align:middle }
+.field-err { color:var(--bad); font-size:12px }
+.qform .invalid .chipin, .qform .invalid input, .qform .invalid select { border-color:var(--bad) }
+.upbox { border:1px dashed var(--line); border-radius:10px; padding:10px 12px; display:grid; gap:8px; font-size:13px }
+.maintabs { display:flex; gap:4px; border-bottom:1px solid var(--line) }
+.maintabs button { border:0; border-bottom:2px solid transparent; border-radius:0; background:none; padding:8px 12px; font-weight:600; color:var(--muted) }
+.maintabs button[aria-selected="true"] { color:var(--fg); border-bottom-color:var(--accent) }
+.pane { display:grid; gap:14px; min-width:0 }
+.cardgrid { display:grid; grid-template-columns:repeat(auto-fill, minmax(330px, 1fr)); gap:14px }
+.jc { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px; display:grid; gap:10px; min-width:0; align-content:start }
+.jc.off { background:color-mix(in srgb, var(--surface) 70%, var(--sunk)) }
+.jc.off .jc-body { opacity:.65 }
+.jc[aria-current="true"] { border-color:var(--accent) }
+.jc-head { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; align-items:start }
+.jc-head h3 { font-size:16px; overflow-wrap:anywhere }
+.jc-body { display:grid; gap:10px }
+.kv { display:grid; grid-template-columns:max-content minmax(0,1fr); gap:4px 10px; font-size:13px; margin:0 }
+.kv dt { color:var(--muted) } .kv dd { margin:0; overflow-wrap:anywhere }
+.mini { display:flex; flex-wrap:wrap; gap:4px }
+.mini span { background:var(--sunk); border-radius:999px; padding:1px 8px; font-size:12px }
+.blk { border-top:1px solid var(--line); padding-top:8px; display:grid; gap:4px; font-size:13px }
+.blk h4 { margin:0; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); display:flex; justify-content:space-between; gap:6px }
+.err-line { color:var(--bad); font-size:12px; overflow-wrap:anywhere }
+.jc-acts { display:flex; flex-wrap:wrap; gap:6px; border-top:1px solid var(--line); padding-top:10px }
+.jc-acts button, .jc-acts .btn { padding:4px 10px; font-size:13px }
+.more { position:relative } .more summary { list-style:none; cursor:pointer; border:1px solid var(--line); border-radius:8px; padding:4px 10px; font-size:13px; font-weight:500 }
+.more summary::-webkit-details-marker { display:none }
+.more[open] summary { border-color:var(--accent) }
+.more .menu { position:absolute; right:0; bottom:calc(100% + 4px); z-index:5; background:var(--surface); border:1px solid var(--line); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.16); padding:6px; display:grid; min-width:190px }
+.more .menu button { border:0; background:none; text-align:left; justify-content:flex-start; padding:7px 10px; border-radius:6px }
+.more .menu button:hover { background:var(--sunk) } .more .menu button.danger-text { color:var(--bad) }
+.switch { position:relative; display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap }
+.switch input { position:absolute; opacity:0; width:1px; height:1px }
+.switch .track { width:36px; height:20px; border-radius:999px; background:var(--line); position:relative; transition:background .15s; flex:none }
+.switch .track::after { content:""; position:absolute; top:2px; left:2px; width:16px; height:16px; border-radius:50%; background:#fff; transition:transform .15s; box-shadow:0 1px 2px rgba(0,0,0,.3) }
+.switch input:checked + .track { background:var(--ok) }
+.switch input:checked + .track::after { transform:translateX(16px) }
+.switch input:focus-visible + .track { outline:2px solid var(--accent); outline-offset:2px }
+.chip.st-Running { background:var(--info-bg); color:var(--accent) } .chip.st-Completed, .chip.st-Sent, .chip.st-Scheduled { background:var(--ok-bg); color:var(--ok) }
+.chip.st-Failed { background:var(--bad-bg); color:var(--bad) } .chip.st-Disabled, .chip.st-Paused, .chip.st-Stopped, .chip.st-Skipped { background:var(--warn-bg); color:var(--warn) }
+.chip.st-Sending { background:var(--info-bg); color:var(--accent) }
+.sc { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px; display:grid; gap:8px }
+.sc.off { opacity:.75 }
+.sc-head { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px; align-items:start }
+dialog { border:1px solid var(--line); border-radius:14px; padding:0; width:min(640px, calc(100vw - 32px)); max-height:calc(100vh - 48px); background:var(--surface); color:var(--fg); box-shadow:0 20px 60px rgba(0,0,0,.3) }
+dialog::backdrop { background:rgba(10,12,20,.45) }
+dialog form { display:grid; gap:14px; padding:18px; max-height:calc(100vh - 50px); overflow:auto }
+.dlg-head { display:flex; justify-content:space-between; align-items:center; gap:10px }
+.dlg-head .x { border:0; background:none; font-size:22px; padding:0 6px; color:var(--muted) }
+.tbl { width:100%; border-collapse:collapse; font-size:13px }
+.tbl th, .tbl td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--line); vertical-align:top }
+.tbl th { font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); position:sticky; top:0; background:var(--surface) }
+.tblwrap { overflow:auto; max-height:52vh; border:1px solid var(--line); border-radius:8px }
+.timeline { list-style:none; margin:0; padding:0; display:grid; gap:0; max-height:52vh; overflow:auto }
+.timeline li { display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px; padding:8px 4px; border-bottom:1px solid var(--line); font-size:13px }
+.timeline .ic { width:26px; height:26px; border-radius:50%; display:grid; place-items:center; font-size:12px; background:var(--sunk) }
+.timeline .ic.ok { background:var(--ok-bg); color:var(--ok) } .timeline .ic.bad { background:var(--bad-bg); color:var(--bad) } .timeline .ic.info { background:var(--info-bg); color:var(--accent) } .timeline .ic.warn { background:var(--warn-bg); color:var(--warn) }
+.timeline time { display:block; font:12px var(--mono); color:var(--muted) }
+.seg2 { display:flex; gap:4px; flex-wrap:wrap }
+.seg2 button { border-radius:999px; padding:4px 12px; font-size:13px }
+.seg2 button[aria-pressed="true"] { background:var(--fg); color:var(--bg); border-color:var(--fg) }
+.checklist { display:grid; gap:4px; max-height:220px; overflow:auto; border:1px solid var(--line); border-radius:8px; padding:6px }
+.checklist label { display:flex; gap:8px; align-items:center; font-weight:500; padding:4px 6px; border-radius:6px }
+.checklist label:hover { background:var(--sunk) } .checklist input { width:auto }
+.note { font-size:13px; background:var(--sunk); border-radius:8px; padding:8px 10px }
+.note.warn { background:var(--warn-bg) } .note.bad { background:var(--bad-bg) } .note.ok { background:var(--ok-bg) }

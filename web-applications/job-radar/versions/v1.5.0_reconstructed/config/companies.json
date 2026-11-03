@@ -1,0 +1,517 @@
+{
+ "_note": "Candidate employer job boards. These are starting guesses: every scan checks them, keeps the ones that answer and skips the ones that don't exist (re-checked every 14 days). Add your own target companies from the app (Settings -> Add a company's careers page) or here.",
+ "companies": [
+  {
+   "ats": "greenhouse",
+   "token": "postman"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "browserstack"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "phonepe"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "groww"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "druva"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "rubrik"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "databricks"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "stripe"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "cloudflare"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "gitlab"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "mongodb"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "elastic"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "hashicorp"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "okta"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "twilio"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "sprinklr"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "chargebee"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "innovaccer"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "hasura"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "thoughtspot"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "harness"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "headout"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "samsara"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "rippling"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "grammarly"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "coinbase"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "airbnb"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "dropbox"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "intercom"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "figma"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "discord"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "robinhood"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "pinterest"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "reddit"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "datadog"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "confluent"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "purestorage"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "nutanix"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "meesho"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "sharechat"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "dream11"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "games24x7"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "unacademy"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "inmobi"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "mindtickle"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "darwinbox"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "leadsquared"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "moengage"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "clevertap"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "whatfix"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "hevodata"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "zenoti"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "icertis"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "highradius"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "yellowai"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "observeai"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "tekion"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "cohesity"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "netskope"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "turing"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "vercel"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "anthropic"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "scaleai"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "glean"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "toast"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "zeta"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "cred"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "upgrad"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "physicswallah"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "swiggy"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "razorpay"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "lenskart"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "nykaa"
+  },
+  {
+   "ats": "greenhouse",
+   "token": "pocketfm"
+  },
+  {
+   "ats": "lever",
+   "token": "cred"
+  },
+  {
+   "ats": "lever",
+   "token": "paytm"
+  },
+  {
+   "ats": "lever",
+   "token": "upstox"
+  },
+  {
+   "ats": "lever",
+   "token": "fampay"
+  },
+  {
+   "ats": "lever",
+   "token": "khatabook"
+  },
+  {
+   "ats": "lever",
+   "token": "slice"
+  },
+  {
+   "ats": "lever",
+   "token": "jupiter"
+  },
+  {
+   "ats": "lever",
+   "token": "zoomcar"
+  },
+  {
+   "ats": "lever",
+   "token": "palantir"
+  },
+  {
+   "ats": "lever",
+   "token": "plaid"
+  },
+  {
+   "ats": "lever",
+   "token": "eightfold"
+  },
+  {
+   "ats": "lever",
+   "token": "nium"
+  },
+  {
+   "ats": "lever",
+   "token": "rapido"
+  },
+  {
+   "ats": "lever",
+   "token": "licious"
+  },
+  {
+   "ats": "lever",
+   "token": "cars24"
+  },
+  {
+   "ats": "lever",
+   "token": "spinny"
+  },
+  {
+   "ats": "lever",
+   "token": "urbancompany"
+  },
+  {
+   "ats": "lever",
+   "token": "vedantu"
+  },
+  {
+   "ats": "lever",
+   "token": "simpl"
+  },
+  {
+   "ats": "lever",
+   "token": "acko"
+  },
+  {
+   "ats": "lever",
+   "token": "pharmeasy"
+  },
+  {
+   "ats": "lever",
+   "token": "ninjacart"
+  },
+  {
+   "ats": "lever",
+   "token": "zetwerk"
+  },
+  {
+   "ats": "lever",
+   "token": "jar"
+  },
+  {
+   "ats": "lever",
+   "token": "dunzo"
+  },
+  {
+   "ats": "lever",
+   "token": "meesho"
+  },
+  {
+   "ats": "lever",
+   "token": "swiggy"
+  },
+  {
+   "ats": "lever",
+   "token": "zepto"
+  },
+  {
+   "ats": "lever",
+   "token": "sharechat"
+  },
+  {
+   "ats": "lever",
+   "token": "mpl"
+  },
+  {
+   "ats": "ashby",
+   "token": "notion"
+  },
+  {
+   "ats": "ashby",
+   "token": "linear"
+  },
+  {
+   "ats": "ashby",
+   "token": "ramp"
+  },
+  {
+   "ats": "ashby",
+   "token": "openai"
+  },
+  {
+   "ats": "ashby",
+   "token": "posthog"
+  },
+  {
+   "ats": "ashby",
+   "token": "supabase"
+  },
+  {
+   "ats": "ashby",
+   "token": "replit"
+  },
+  {
+   "ats": "ashby",
+   "token": "deel"
+  },
+  {
+   "ats": "ashby",
+   "token": "atlan"
+  },
+  {
+   "ats": "ashby",
+   "token": "sarvam"
+  },
+  {
+   "ats": "ashby",
+   "token": "zepto"
+  },
+  {
+   "ats": "ashby",
+   "token": "groq"
+  },
+  {
+   "ats": "ashby",
+   "token": "cohere"
+  },
+  {
+   "ats": "ashby",
+   "token": "airtable"
+  },
+  {
+   "ats": "ashby",
+   "token": "retool"
+  },
+  {
+   "ats": "ashby",
+   "token": "hightouch"
+  },
+  {
+   "ats": "ashby",
+   "token": "mercor"
+  },
+  {
+   "ats": "ashby",
+   "token": "elevenlabs"
+  },
+  {
+   "ats": "ashby",
+   "token": "perplexity"
+  },
+  {
+   "ats": "smartrecruiters",
+   "token": "Visa"
+  },
+  {
+   "ats": "smartrecruiters",
+   "token": "ServiceNow"
+  },
+  {
+   "ats": "smartrecruiters",
+   "token": "Freshworks"
+  },
+  {
+   "ats": "smartrecruiters",
+   "token": "Bosch"
+  },
+  {
+   "ats": "smartrecruiters",
+   "token": "Wipro"
+  }
+ ]
+}

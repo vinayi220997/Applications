@@ -1,0 +1,20 @@
+JOB RADAR – JOB SEARCH BRIEF
+Fill in each line after the colon, save, and attach this file in the Find jobs chat.
+Separate several values with commas. Leave a line empty (or write "skip") if it doesn't matter to you.
+The example values below are for a fictional person – replace them with your own.
+
+Job titles: Product Designer, UX Designer, UI/UX Designer
+Experience: 3-5 years
+Locations: Bengaluru, Hyderabad, Pune
+Remote jobs abroad: Yes
+Work arrangement: Hybrid
+Must-have skills: Figma, user research, prototyping, design systems
+Industries: fintech, saas
+Minimum salary: 14 LPA
+Avoid: internship, graphic designer, gaming
+Report email: ananya.rao@example.com
+Search name: Ananya – product design
+
+Notes (optional, free text):
+I enjoy end-to-end product design for B2B web apps. I'd like a team with a mature design system
+and real user research. Open to relocating within South India.

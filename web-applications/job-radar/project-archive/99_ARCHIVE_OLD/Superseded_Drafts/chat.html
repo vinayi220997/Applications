@@ -1,0 +1,50 @@
+      <section class="panel" aria-labelledby="chatH">
+        <div class="chat-head">
+          <div><h2 id="chatH">Find jobs</h2>
+            <p class="muted small" style="margin:4px 0 0">Describe the job you want. I'll ask up to 10 short questions and check each answer with you.</p></div>
+          <button type="button" class="status-btn st-offline" id="statusBtn" aria-expanded="false" aria-controls="svcPanel" title="Chat status"><span class="dot"></span><span id="statusText">Checking…</span></button>
+        </div>
+        <div class="feat" id="featChips" aria-label="Feature status"></div>
+        <div class="popover" id="svcPanel" hidden aria-labelledby="svcH">
+          <div class="row"><h3 id="svcH">Chat status</h3><button type="button" class="linkish" id="svcClose">Close</button></div>
+          <div id="svcBody"></div>
+        </div>
+        <div class="prog" id="prog" aria-live="polite"></div>
+        <div class="thread" id="thread" aria-live="polite"></div>
+        <form class="composer" id="composer">
+          <label for="chatText" id="chatLabel">Your message</label>
+          <div class="files" id="files" aria-live="polite"></div>
+          <div id="review"></div>
+          <textarea id="chatText" placeholder="e.g. Python backend developer, 4 years, Django and AWS, fintech or SaaS, Bengaluru or remote. You can also attach your resume or a job post."></textarea>
+          <div class="tools" role="toolbar" aria-label="Add to message">
+            <button type="button" id="attachBtn" aria-expanded="false" aria-controls="attachPanel" title="Attach a resume, job post, image or audio file">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 01-7.8-7.8l8.6-8.6a3.7 3.7 0 015.2 5.2l-8.6 8.6a1.8 1.8 0 01-2.6-2.6l8-8"/></svg>Attach</button>
+            <button type="button" id="shotBtn" title="Capture a screenshot of a window or tab (for example a job post); its text is read with OCR">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6l1.5-2h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>Screenshot</button>
+            <button type="button" id="micBtn" aria-expanded="false" aria-controls="voicePanel" title="Record a voice note and review the transcript before using it">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg><span id="micLabel">Voice</span></button>
+            <input type="file" id="fileInput" multiple hidden accept=".pdf,.docx,.txt,.md,.rtf,.png,.jpg,.jpeg,.webp,.gif,.webm,.ogg,.mp3,.wav,.m4a">
+          </div>
+          <div class="popover" id="attachPanel" hidden>
+            <div class="row"><h3>Attach a file</h3><button type="button" class="linkish" data-close="attachPanel">Close</button></div>
+            <dl class="formats">
+              <dt>Documents</dt><dd>PDF, Word (.docx), TXT, MD, RTF</dd>
+              <dt>Images</dt><dd>PNG, JPG, WEBP, GIF (text is read with OCR)</dd>
+              <dt>Audio</dt><dd>WEBM, OGG, MP3, WAV, M4A</dd>
+              <dt>Limits</dt><dd>Up to 15 MB per file, 10 files per message</dd>
+            </dl>
+            <button type="button" class="primary" id="chooseFiles" style="justify-self:start">Choose files…</button>
+            <div class="small muted">Tip: drag files onto the message box, or paste a screenshot with Ctrl+V.</div>
+            <div class="samples">
+              <div class="small" style="font-weight:600">Not sure what to include? Download a sample:</div>
+              <a href="/samples/job-search-brief.txt?download=1" download><span><b>Job search brief</b> – fill it in and attach it <span class="rec">Best</span></span><span>.txt · 1 KB</span></a>
+              <a href="/samples/sample-resume.docx?download=1" download><span><b>Sample resume</b> (fictional)</span><span>.docx · 37 KB</span></a>
+              <a href="/samples/sample-job-post.txt?download=1" download><span><b>Sample job post</b></span><span>.txt · 1 KB</span></a>
+              <a href="/samples/sample-job-post.png?download=1" download><span><b>Sample screenshot</b> of a job post</span><span>.png · 85 KB</span></a>
+            </div>
+          </div>
+          <div class="popover" id="voicePanel" hidden></div>
+          <div class="row"><button type="button" id="restart">Start over</button><button class="primary" type="submit" id="send">Send</button></div>
+          <div class="toast" id="chatMsg" role="status"></div>
+        </form>
+      </section>

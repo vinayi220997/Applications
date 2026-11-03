@@ -1,0 +1,76 @@
+PROJECT MASTER ARCHIVE MANIFEST — 2026-10-11
+Archive: PROJECT_MASTER_ARCHIVE_2026-10-11.zip (single package, not split)
+Files in archive: 754 (see MASTER_FILE_INDEX.csv)
+
+Files by category:
+  Archive: 3
+  Backup note: 2
+  Configuration: 1
+  Database snapshot: 1
+  Dataset: 1
+  Decisions: 1
+  Dependencies: 1
+  Design: 3
+  Diagram: 2
+  Document: 2
+  Documentation: 15
+  Folder note: 25
+  Historical source: 4
+  History: 1
+  Icon: 1
+  Image: 4
+  Installer: 6
+  License: 1
+  Log: 1
+  Output: 1
+  Requirements: 6
+  Research: 3
+  Sample resource: 5
+  Schema: 1
+  Screenshot: 29
+  Source code: 539
+  Specification: 1
+  Superseded UI: 1
+  Technical documentation: 1
+  Test fixture: 2
+  Test result: 1
+  Test script: 12
+  Version history: 1
+  Version snapshot: 66
+  Working draft: 7
+
+Secret scan (text files; patterns: Gmail app password, known exposed password, Anthropic key, private key, filled app_password):
+  Findings: 13 (real credentials found: 0)
+  - 10_TESTS_AND_VALIDATION/Quality_Checks/scripts/fullflow.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "zzzz zzzz zzzz zzzz"
+  - 10_TESTS_AND_VALIDATION/Quality_Checks/scripts/fullflow.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "abcd efgh ijkl mnop"
+  - 10_TESTS_AND_VALIDATION/Quality_Checks/scripts/fullflow2.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "zzzz zzzz zzzz zzzz"
+  - 10_TESTS_AND_VALIDATION/Quality_Checks/scripts/fullflow2.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "abcd efgh ijkl mnop"
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.4.0_with-10Oct-update_reconstructed/tests/test_core.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "abcd efgh ijkl mnop"
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.4.0_with-10Oct-update_reconstructed/tests/test_core.py | Filled app_password field — known fake test value | "app_password": "abcd efgh ijkl mnop"
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.4.0_as-zipped/tests/test_core.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "abcd efgh ijkl mnop"
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.4.0_as-zipped/tests/test_core.py | Filled app_password field — known fake test value | "app_password": "abcd efgh ijkl mnop"
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.8.0/tests/test_core.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "abcd efgh ijkl mnop"
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.8.0/tests/test_core.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "abcd efgh ijkl mnop"
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.8.0/tests/test_core.py | Quoted app-password-shaped value (xxxx xxxx xxxx xxxx) — known fake test value | "abcd efgh ijkl mnop"
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.8.0/tests/test_core.py | Anthropic key — known fake test value | sk-ant-abcdefghijklmnop1234
+  - 07_SOURCE_FILES/SourceCode/JobRadar_v1.8.0/tests/test_core.py | Filled app_password field — known fake test value | "app_password": "abcd efgh ijkl mnop"
+PC database snapshot: SQLite quick_check=ok; tables=10; this database contains no credential tables
+
+Excluded files (they exist in the sandbox but are not packaged):
+  - /home/claude/jobradar-agent/config/settings.json — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/jobradar.db — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/jobradar.log — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/0c13957b5bb04e8f.txt — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/19c551cc235a4ba0.png — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/228fe1744bc14455.docx — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/2ade76862f4e4451.png — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/3014c4199f6946bc.txt — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/49d2ba9f015c4c07.txt — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/9f172dd3ad734f4b.txt — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/acddf4e5e9d14cfd.png — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/b9a1718752a043f9.png — secret/runtime file or generated runtime data
+  - /home/claude/jobradar-agent/data/attachments/e0a88cc5614f42ca.webm — secret/runtime file or generated runtime data
+  - /root/.claude/projects/.../0c6309a8-....jsonl — raw transcript containing a credential; replaced by a redacted log
+  - /tmp/jrflow, /tmp/realdb, /tmp/pp, __pycache__, session task files — copies, caches or tool internals
+
+Checksums: SHA-256 for every file is in MASTER_FILE_INDEX.csv; the ZIP's own SHA-256 is in PROJECT_MASTER_ARCHIVE_2026-10-11.zip.sha256

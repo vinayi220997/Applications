@@ -1,0 +1,6 @@
+data/
+reports/
+config/settings.json
+run_scan.bat
+run_scan.sh
+__pycache__/
